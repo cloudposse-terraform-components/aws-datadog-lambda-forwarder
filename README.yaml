@@ -1,70 +1,88 @@
-name: "template"
-
+name: "aws-datadog-lambda-forwarder"
 # Canonical GitHub repo
-github_repo: "cloudposse-terraform-components/template"
-
+github_repo: "cloudposse-terraform-components/aws-datadog-lambda-forwarder"
 # Short description of this project
 description: |-
-  Description of this component
+  This component is responsible for provision all the necessary infrastructure to deploy
+  [Datadog Lambda forwarders](https://github.com/DataDog/datadog-serverless-functions/tree/master/aws/logs_monitoring). It
+  depends on the `datadog-configuration` component to get the Datadog API keys.
 
-usage: |-
-  **Stack Level**: Regional or Test47
+  ## Usage
 
-  Here's an example snippet for how to use this component.
-  
+  **Stack Level**: Global
+
+  Here's an example snippet for how to use this component:
+
   ```yaml
   components:
     terraform:
-      foo:
+      datadog-lambda-forwarder:
+        settings:
+          spacelift:
+            workspace_enabled: true
         vars:
           enabled: true
+          name: datadog-lambda-forwarder
+          # Set `forwarder_rds_enabled`  to `true` and configure `rds-enhanced-monitoring` Log Group when:
+          # 1. The account has RDS instances provisioned
+          # 2. RDS Enhanced Monitoring is enabled
+          # 3. CloudWatch Log Group `RDSOSMetrics` exists (it will be created by AWS automatically when RDS Enhanced Monitoring is enabled)
+          forwarder_rds_enabled: true
+          forwarder_log_enabled: true
+          forwarder_vpc_logs_enabled: true
+          cloudwatch_forwarder_log_groups:
+            rds-enhanced-monitoring:
+              name: "RDSOSMetrics"
+              filter_pattern: ""
+            eks-cluster:
+              # Use either `name` or `name_prefix` with `name_suffix`
+              # If `name_prefix` with `name_suffix` are used, the final `name` will be constructed using `name_prefix` + context + `name_suffix`,
+              # e.g. "/aws/eks/eg-ue2-prod-eks-cluster/cluster"
+              name_prefix: "/aws/eks/"
+              name_suffix: "eks-cluster/cluster"
+              filter_pattern: ""
+            transfer-sftp:
+              name: "/aws/transfer/s-xxxxxxxxxxxx"
+              filter_pattern: ""
   ```
 
+  <!-- prettier-ignore-start -->
+
+  <!-- prettier-ignore-end -->
+
+  ## References
+
+  - Datadog's [documentation about provisioning keys](https://docs.datadoghq.com/account_management/api-app-keys)
+  - [cloudposse/terraform-aws-components](https://github.com/cloudposse/terraform-aws-components/tree/main/modules/datadog-lambda-forwarder) -
+    Cloud Posse's upstream component
 include:
   - "docs/terraform.md"
-
 tags:
-  - terraform
-  - terraform-modules
-  - aws
-  - components
-  - terraform-components
-  - root
-  - geodesic
-  - reference-implementation
-  - reference-architecture
-
+  - component/datadog-lambda-forwarder
+  - layer/datadog
+  - provider/aws
+  - provider/datadog
 # Categories of this project
 categories:
-  - terraform-modules/root
-  - terraform-components
-
+  - component/datadog-lambda-forwarder
+  - layer/datadog
+  - provider/aws
+  - provider/datadog
 # License of this project
 license: "APACHE2"
-
 # Badges to display
 badges:
-  - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse-terraform-components/template.svg?style=for-the-badge"
-    url: "https://github.com/cloudposse-terraform-components/template/releases/latest"
-  - name: "Slack Community"
-    image: "https://slack.cloudposse.com/for-the-badge.svg"
-    url: "https://slack.cloudposse.com"
-
-references:
-  - name: "Cloud Posse Documentation"
-    description: "Complete documentation for the Cloud Posse solution"
-    url: "https://docs.cloudposse.com"
-  - name: "Reference Architectures"
-    description: "Launch effortlessly with our turnkey reference architectures, built either by your team or ours."
-    url: "https://cloudposse.com/"
-
+  - name: Latest Release
+    image: https://img.shields.io/github/release/cloudposse-terraform-components/aws-datadog-lambda-forwarder.svg?style=for-the-badge
+    url: https://github.com/cloudposse-terraform-components/aws-datadog-lambda-forwarder/releases/latest
+  - name: Slack Community
+    image: https://slack.cloudposse.com/for-the-badge.svg
+    url: https://slack.cloudposse.com
 related:
-- name: "Cloud Posse Terraform Modules"
-  description: Our collection of reusable Terraform modules used by our reference architectures.
-  url: "https://docs.cloudposse.com/modules/"
-- name: "Atmos"
-  description: "Atmos is like docker-compose but for your infrastructure"
-  url: "https://atmos.tools"
-
+  - name: "Cloud Posse Terraform Modules"
+    description: Our collection of reusable Terraform modules used by our reference architectures.
+    url: "https://docs.cloudposse.com/modules/"
+  - name: "Atmos"
+    description: "Atmos is like docker-compose but for your infrastructure"
+    url: "https://atmos.tools"
 contributors: [] # If included generates contribs
