@@ -2,6 +2,6 @@
 _extends: .github
 repository:
   name: aws-datadog-lambda-forwarder
-  description: This component is responsible for provision all the necessary infrastructure to deploy [Datadog Lambda forwarders](https://github
+  description: This component is responsible for provision all the necessary infrastructure to deploy Datadog Lambda forwarders
   homepage: https://cloudposse.com/accelerate
   topics: terraform, terraform-component
