@@ -6,7 +6,7 @@ tags:
   - provider/datadog
 ---
 
-# Component: `datadog`
+# Component: `datadog-lambda-forwarder`
 
 This component is responsible for provision all the necessary infrastructure to deploy
 [Datadog Lambda forwarders](https://github.com/DataDog/datadog-serverless-functions/tree/master/aws/logs_monitoring). It
