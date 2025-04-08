@@ -12,8 +12,8 @@ locals {
         lookup(v, "name_prefix", "/aws/"),
         module.log_group_prefix.id,
         module.log_group_prefix.delimiter,
-        lookup(v, "name_suffix")
-      ) : lookup(v, "name")
+        v["name_suffix"]
+      ) : v["name"]
       filter_pattern : lookup(v, "filter_pattern", "")
     }
   }
