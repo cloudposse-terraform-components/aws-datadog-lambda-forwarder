@@ -1,6 +1,5 @@
 module "datadog_configuration" {
   source                  = "github.com/cloudposse-terraform-components/aws-datadog-credentials?ref=v1.535.1"
-  version                 = "1.535.1"
   enabled                 = true
   context                 = module.this.context
   global_environment_name = var.datadog_configuration_environment
