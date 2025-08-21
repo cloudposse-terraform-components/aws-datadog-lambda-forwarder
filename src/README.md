@@ -8,10 +8,9 @@ tags:
 
 # Component: `datadog-lambda-forwarder`
 
-This component is responsible for provision all the necessary infrastructure to deploy
-[Datadog Lambda forwarders](https://github.com/DataDog/datadog-serverless-functions/tree/master/aws/logs_monitoring). It
-depends on the `datadog-configuration` component to get the Datadog API keys.
-
+This component provisions all infrastructure required to deploy
+[Datadog Lambda forwarders](https://github.com/DataDog/datadog-serverless-functions/tree/master/aws/logs_monitoring).
+It depends on the `datadog-configuration` component to obtain the Datadog API keys.
 ## Usage
 
 **Stack Level**: Regional
@@ -51,10 +50,10 @@ components:
             filter_pattern: ""
 ```
 
-Note for other regions, you need to deploy the `datadog-configuration` component in the respective region - the datadog
-configuration will be moving to a regional implementation.
+Note for other regions: you need to deploy the `datadog-configuration` component in the respective region — the Datadog
+configuration is moving to a regional implementation.
 
-For example if you usually deploy to us-west-2 (and DD Configuration is `gbl`), deploy it to the new region and then
+For example, if you usually deploy to `us-west-2` (and DD Configuration is `gbl`), deploy it to the new region and then
 deploy the lambda forwarder.
 
 ```yaml
@@ -77,8 +76,8 @@ components:
         datadog_configuration_environment: "use1"
 ```
 
-<!-- prettier-ignore-start -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+<!-- markdownlint-disable -->
 ## Requirements
 
 | Name | Version |
@@ -184,13 +183,19 @@ components:
 | <a name="output_lambda_forwarder_rds_function_arn"></a> [lambda\_forwarder\_rds\_function\_arn](#output\_lambda\_forwarder\_rds\_function\_arn) | Datadog Lambda forwarder RDS Enhanced Monitoring function ARN |
 | <a name="output_lambda_forwarder_vpc_log_function_arn"></a> [lambda\_forwarder\_vpc\_log\_function\_arn](#output\_lambda\_forwarder\_vpc\_log\_function\_arn) | Datadog Lambda forwarder VPC Flow Logs function ARN |
 | <a name="output_lambda_forwarder_vpc_log_function_name"></a> [lambda\_forwarder\_vpc\_log\_function\_name](#output\_lambda\_forwarder\_vpc\_log\_function\_name) | Datadog Lambda forwarder VPC Flow Logs function name |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- prettier-ignore-end -->
+<!-- markdownlint-restore -->
+
+
 
 ## References
 
-- Datadog's [documentation about provisioning keys](https://docs.datadoghq.com/account_management/api-app-keys)
-- [cloudposse/terraform-aws-components](https://github.com/cloudposse/terraform-aws-components/tree/main/modules/datadog-lambda-forwarder) -
-  Cloud Posse's upstream component
+
+- [Datadog's documentation about provisioning keys](https://docs.datadoghq.com/account_management/api-app-keys) - 
+
+- [cloudposse/terraform-aws-components](https://github.com/cloudposse/terraform-aws-components/tree/main/modules/datadog-lambda-forwarder) - Cloud Posse's upstream component
+
+
+
 
 [<img src="https://cloudposse.com/logo-300x69.svg" height="32" align="right"/>](https://cpco.io/homepage?utm_source=github&utm_medium=readme&utm_campaign=cloudposse-terraform-components/aws-datadog-lambda-forwarder&utm_content=)
+
