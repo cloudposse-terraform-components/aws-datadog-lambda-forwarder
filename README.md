@@ -134,7 +134,7 @@ components:
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0, < 6.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0 |
 | <a name="requirement_datadog"></a> [datadog](#requirement\_datadog) | >= 3.3.0 |
 
 ## Providers
@@ -147,10 +147,10 @@ components:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_datadog-integration"></a> [datadog-integration](#module\_datadog-integration) | cloudposse/stack-config/yaml//modules/remote-state | 1.8.0 |
-| <a name="module_datadog_configuration"></a> [datadog\_configuration](#module\_datadog\_configuration) | github.com/cloudposse-terraform-components/aws-datadog-credentials//src/modules/datadog_keys | v1.535.7 |
-| <a name="module_datadog_lambda_forwarder"></a> [datadog\_lambda\_forwarder](#module\_datadog\_lambda\_forwarder) | cloudposse/datadog-lambda-forwarder/aws | 1.8.0 |
-| <a name="module_iam_roles"></a> [iam\_roles](#module\_iam\_roles) | github.com/cloudposse-terraform-components/aws-account-map//src/modules/iam-roles | v1.535.5 |
+| <a name="module_datadog-integration"></a> [datadog-integration](#module\_datadog-integration) | cloudposse/stack-config/yaml//modules/remote-state | 1.5.0 |
+| <a name="module_datadog_configuration"></a> [datadog\_configuration](#module\_datadog\_configuration) | ../datadog-configuration/modules/datadog_keys | n/a |
+| <a name="module_datadog_lambda_forwarder"></a> [datadog\_lambda\_forwarder](#module\_datadog\_lambda\_forwarder) | cloudposse/datadog-lambda-forwarder/aws | 1.5.3 |
+| <a name="module_iam_roles"></a> [iam\_roles](#module\_iam\_roles) | ../account-map/modules/iam-roles | n/a |
 | <a name="module_log_group_prefix"></a> [log\_group\_prefix](#module\_log\_group\_prefix) | cloudposse/label/null | 0.25.0 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
 
@@ -182,7 +182,7 @@ components:
 | <a name="input_dd_module_name"></a> [dd\_module\_name](#input\_dd\_module\_name) | The Datadog GitHub repository name | `string` | `"datadog-serverless-functions"` | no |
 | <a name="input_dd_tags_map"></a> [dd\_tags\_map](#input\_dd\_tags\_map) | A map of Datadog tags to apply to all logs forwarded to Datadog | `map(string)` | `{}` | no |
 | <a name="input_delimiter"></a> [delimiter](#input\_delimiter) | Delimiter to be used between ID elements.<br/>Defaults to `-` (hyphen). Set to `""` to use no delimiter at all. | `string` | `null` | no |
-| <a name="input_descriptor_formats"></a> [descriptor\_formats](#input\_descriptor\_formats) | Describe additional descriptors to be output in the `descriptors` output map.<br/>Map of maps. Keys are names of descriptors. Values are maps of the form<br/>`{<br/>  format = string<br/>  labels = list(string)<br/>}`<br/>(Type is `any` so the map values can later be enhanced to provide additional options.)<br/>`format` is a Terraform format string to be passed to the `format()` function.<br/>`labels` is a list of labels, in order, to pass to `format()` function.<br/>Label values will be normalized before being passed to `format()` so they will be<br/>identical to how they appear in `id`.<br/>Default is `{}` (`descriptors` output will be empty). | `any` | `{}` | no |
+| <a name="input_descriptor_formats"></a> [descriptor\_formats](#input\_descriptor\_formats) | Describe additional descriptors to be output in the `descriptors` output map.<br/>Map of maps. Keys are names of descriptors. Values are maps of the form<br/>`{<br/>   format = string<br/>   labels = list(string)<br/>}`<br/>(Type is `any` so the map values can later be enhanced to provide additional options.)<br/>`format` is a Terraform format string to be passed to the `format()` function.<br/>`labels` is a list of labels, in order, to pass to `format()` function.<br/>Label values will be normalized before being passed to `format()` so they will be<br/>identical to how they appear in `id`.<br/>Default is `{}` (`descriptors` output will be empty). | `any` | `{}` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Set to false to prevent the module from creating any resources | `bool` | `null` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | ID element. Usually used for region e.g. 'uw2', 'us-west-2', OR role 'prod', 'staging', 'dev', 'UAT' | `string` | `null` | no |
 | <a name="input_forwarder_lambda_debug_enabled"></a> [forwarder\_lambda\_debug\_enabled](#input\_forwarder\_lambda\_debug\_enabled) | Whether to enable or disable debug for the Lambda forwarder | `bool` | `false` | no |
