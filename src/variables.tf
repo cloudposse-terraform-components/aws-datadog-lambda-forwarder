@@ -103,7 +103,7 @@ variable "s3_buckets_with_prefixes" {
 variable "s3_notification_events" {
   type        = list(string)
   description = "List of S3 events to trigger the Lambda notification"
-  default     = ["s3:ObjectCreated:*", "s3:ObjectRemoved:*"]
+  default     = []
 }
 
 variable "s3_bucket_kms_arns" {
