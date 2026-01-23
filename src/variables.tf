@@ -25,7 +25,7 @@ variable "lambda_reserved_concurrent_executions" {
 variable "lambda_runtime" {
   type        = string
   description = "Runtime environment for Datadog Lambda"
-  default     = "python3.8"
+  default     = "python3.11"
 }
 
 variable "tracing_config_mode" {
@@ -55,7 +55,7 @@ variable "dd_module_name" {
 variable "dd_forwarder_version" {
   type        = string
   description = "Version tag of Datadog lambdas to use. https://github.com/DataDog/datadog-serverless-functions/releases"
-  default     = "3.66.0"
+  default     = "3.116.0"
 }
 
 variable "forwarder_log_enabled" {
