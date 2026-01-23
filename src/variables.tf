@@ -25,7 +25,7 @@ variable "lambda_reserved_concurrent_executions" {
 variable "lambda_runtime" {
   type        = string
   description = "Runtime environment for Datadog Lambda"
-  default     = "python3.8"
+  default     = "python3.11"
 }
 
 variable "tracing_config_mode" {
