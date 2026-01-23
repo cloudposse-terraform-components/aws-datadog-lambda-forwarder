@@ -75,6 +75,7 @@ module "datadog_lambda_forwarder" {
   s3_bucket_kms_arns                    = var.s3_bucket_kms_arns
   s3_buckets                            = var.s3_buckets
   s3_buckets_with_prefixes              = var.s3_buckets_with_prefixes
+  s3_notification_events                = var.s3_notification_events
   security_group_ids                    = var.security_group_ids
   subnet_ids                            = var.subnet_ids
   tracing_config_mode                   = var.tracing_config_mode
