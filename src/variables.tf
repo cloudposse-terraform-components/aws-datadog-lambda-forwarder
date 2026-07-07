@@ -28,6 +28,17 @@ variable "lambda_runtime" {
   default     = "python3.11"
 }
 
+variable "lambda_architectures" {
+  type        = list(string)
+  description = "Instruction set architecture for the Datadog Lambda function. Valid values are [\"x86_64\"] and [\"arm64\"]. Set to [\"arm64\"] when using Datadog Forwarder 5.x artifacts."
+  default     = null
+
+  validation {
+    condition     = var.lambda_architectures == null ? true : alltrue([for a in var.lambda_architectures : contains(["x86_64", "arm64"], a)])
+    error_message = "lambda_architectures must be null or a list containing only \"x86_64\" and/or \"arm64\"."
+  }
+}
+
 variable "tracing_config_mode" {
   type        = string
   description = "Can be either PassThrough or Active. If PassThrough, Lambda will only trace the request from an upstream service if it contains a tracing header with 'sampled=1'. If Active, Lambda will respect any tracing header it receives from an upstream service"
@@ -80,6 +91,12 @@ variable "forwarder_log_retention_days" {
   type        = number
   description = "Number of days to retain Datadog forwarder lambda execution logs. One of [0 1 3 5 7 14 30 60 90 120 150 180 365 400 545 731 1827 3653]"
   default     = 14
+}
+
+variable "forwarder_use_cache_bucket" {
+  type        = bool
+  description = "Flag to enable or disable the cache bucket for lambda tags and failed events. See https://docs.datadoghq.com/logs/guide/forwarder/?tab=cloudformation#upgrade-an-older-version-to-31060. Recommended for forwarder versions 3.106 and higher."
+  default     = true
 }
 
 variable "kms_key_id" {
