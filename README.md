@@ -157,7 +157,7 @@ components:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_datadog"></a> [datadog](#provider\_datadog) | 3.91.0 |
+| <a name="provider_datadog"></a> [datadog](#provider\_datadog) | >= 3.3.0, < 4.0.0 |
 
 ## Modules
 

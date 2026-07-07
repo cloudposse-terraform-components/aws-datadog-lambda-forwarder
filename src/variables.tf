@@ -32,6 +32,11 @@ variable "lambda_architectures" {
   type        = list(string)
   description = "Instruction set architecture for the Datadog Lambda function. Valid values are [\"x86_64\"] and [\"arm64\"]. Set to [\"arm64\"] when using Datadog Forwarder 5.x artifacts."
   default     = null
+
+  validation {
+    condition     = var.lambda_architectures == null ? true : alltrue([for a in var.lambda_architectures : contains(["x86_64", "arm64"], a)])
+    error_message = "lambda_architectures must be null or a list containing only \"x86_64\" and/or \"arm64\"."
+  }
 }
 
 variable "tracing_config_mode" {
