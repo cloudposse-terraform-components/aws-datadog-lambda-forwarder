@@ -64,11 +64,13 @@ module "datadog_lambda_forwarder" {
   forwarder_rds_enabled                 = var.forwarder_rds_enabled
   forwarder_rds_filter_pattern          = var.forwarder_rds_filter_pattern
   forwarder_rds_layers                  = var.forwarder_rds_layers
+  forwarder_use_cache_bucket            = var.forwarder_use_cache_bucket
   forwarder_vpc_logs_artifact_url       = var.forwarder_vpc_logs_artifact_url
   forwarder_vpc_logs_enabled            = var.forwarder_vpc_logs_enabled
   forwarder_vpc_logs_layers             = var.forwarder_vpc_logs_layers
   forwarder_vpclogs_filter_pattern      = var.forwarder_vpclogs_filter_pattern
   kms_key_id                            = var.kms_key_id
+  lambda_architectures                  = var.lambda_architectures
   lambda_policy_source_json             = var.lambda_policy_source_json
   lambda_reserved_concurrent_executions = var.lambda_reserved_concurrent_executions
   lambda_runtime                        = var.lambda_runtime

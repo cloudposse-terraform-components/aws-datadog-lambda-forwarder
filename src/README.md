@@ -106,7 +106,7 @@ components:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_datadog"></a> [datadog](#provider\_datadog) | >= 3.3.0, < 4.0.0 |
+| <a name="provider_datadog"></a> [datadog](#provider\_datadog) | 3.91.0 |
 
 ## Modules
 
@@ -159,6 +159,7 @@ components:
 | <a name="input_forwarder_rds_enabled"></a> [forwarder\_rds\_enabled](#input\_forwarder\_rds\_enabled) | Flag to enable or disable Datadog RDS enhanced monitoring forwarder | `bool` | `false` | no |
 | <a name="input_forwarder_rds_filter_pattern"></a> [forwarder\_rds\_filter\_pattern](#input\_forwarder\_rds\_filter\_pattern) | Filter pattern for Lambda forwarder RDS | `string` | `""` | no |
 | <a name="input_forwarder_rds_layers"></a> [forwarder\_rds\_layers](#input\_forwarder\_rds\_layers) | List of Lambda Layer Version ARNs (maximum of 5) to attach to Datadog RDS enhanced monitoring lambda function | `list(string)` | `[]` | no |
+| <a name="input_forwarder_use_cache_bucket"></a> [forwarder\_use\_cache\_bucket](#input\_forwarder\_use\_cache\_bucket) | Flag to enable or disable the cache bucket for lambda tags and failed events. See https://docs.datadoghq.com/logs/guide/forwarder/?tab=cloudformation#upgrade-an-older-version-to-31060. Recommended for forwarder versions 3.106 and higher. | `bool` | `true` | no |
 | <a name="input_forwarder_vpc_logs_artifact_url"></a> [forwarder\_vpc\_logs\_artifact\_url](#input\_forwarder\_vpc\_logs\_artifact\_url) | The URL for the code of the Datadog forwarder for VPC Logs. It can be a local file, url or git repo | `string` | `null` | no |
 | <a name="input_forwarder_vpc_logs_enabled"></a> [forwarder\_vpc\_logs\_enabled](#input\_forwarder\_vpc\_logs\_enabled) | Flag to enable or disable Datadog VPC flow log forwarder | `bool` | `false` | no |
 | <a name="input_forwarder_vpc_logs_layers"></a> [forwarder\_vpc\_logs\_layers](#input\_forwarder\_vpc\_logs\_layers) | List of Lambda Layer Version ARNs (maximum of 5) to attach to Datadog VPC flow log forwarder lambda function | `list(string)` | `[]` | no |
@@ -169,6 +170,7 @@ components:
 | <a name="input_label_order"></a> [label\_order](#input\_label\_order) | The order in which the labels (ID elements) appear in the `id`.<br/>Defaults to ["namespace", "environment", "stage", "name", "attributes"].<br/>You can omit any of the 6 labels ("tenant" is the 6th), but at least one must be present. | `list(string)` | `null` | no |
 | <a name="input_label_value_case"></a> [label\_value\_case](#input\_label\_value\_case) | Controls the letter case of ID elements (labels) as included in `id`,<br/>set as tag values, and output by this module individually.<br/>Does not affect values of tags passed in via the `tags` input.<br/>Possible values: `lower`, `title`, `upper` and `none` (no transformation).<br/>Set this to `title` and set `delimiter` to `""` to yield Pascal Case IDs.<br/>Default value: `lower`. | `string` | `null` | no |
 | <a name="input_labels_as_tags"></a> [labels\_as\_tags](#input\_labels\_as\_tags) | Set of labels (ID elements) to include as tags in the `tags` output.<br/>Default is to include all labels.<br/>Tags with empty values will not be included in the `tags` output.<br/>Set to `[]` to suppress all generated tags.<br/>**Notes:**<br/>  The value of the `name` tag, if included, will be the `id`, not the `name`.<br/>  Unlike other `null-label` inputs, the initial setting of `labels_as_tags` cannot be<br/>  changed in later chained modules. Attempts to change it will be silently ignored. | `set(string)` | <pre>[<br/>  "default"<br/>]</pre> | no |
+| <a name="input_lambda_architectures"></a> [lambda\_architectures](#input\_lambda\_architectures) | Instruction set architecture for the Datadog Lambda function. Valid values are ["x86\_64"] and ["arm64"]. Set to ["arm64"] when using Datadog Forwarder 5.x artifacts. | `list(string)` | `null` | no |
 | <a name="input_lambda_arn_enabled"></a> [lambda\_arn\_enabled](#input\_lambda\_arn\_enabled) | Enable adding the Lambda Arn to this account integration | `bool` | `true` | no |
 | <a name="input_lambda_policy_source_json"></a> [lambda\_policy\_source\_json](#input\_lambda\_policy\_source\_json) | Additional IAM policy document that can optionally be passed and merged with the created policy document | `string` | `""` | no |
 | <a name="input_lambda_reserved_concurrent_executions"></a> [lambda\_reserved\_concurrent\_executions](#input\_lambda\_reserved\_concurrent\_executions) | Amount of reserved concurrent executions for the lambda function. A value of 0 disables Lambda from being triggered and -1 removes any concurrency limitations. Defaults to Unreserved Concurrency Limits -1 | `number` | `-1` | no |
