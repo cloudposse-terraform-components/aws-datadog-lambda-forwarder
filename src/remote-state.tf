@@ -1,6 +1,6 @@
 module "datadog-integration" {
   source  = "cloudposse/stack-config/yaml//modules/remote-state"
-  version = "1.8.0"
+  version = "1.8.1"
 
   component = "datadog-integration"
 
